@@ -33,4 +33,25 @@ class PromotionsList
         'It should be one of [\'total\', \'quantity\']'
     end
   end
+
+  def quantity_promotion_on(code, quantity)
+    list.select do |promotion|
+      promotion.is_a?(QuantityPromotion) &&
+        promotion.product_code == code &&
+        promotion.units <= quantity
+    end.first
+  end
+
+  def total_promotions_on(total_amount)
+    list.select do |promotion|
+      promotion.is_a?(TotalPromotion) &&
+        promotion.amount <= total_amount
+    end
+  end
+
+  def total_discount_on(bill)
+    total_promotions_on(bill).inject(0) do |mem, promotion|
+      mem + (promotion.discount_percentage * bill)
+    end
+  end
 end

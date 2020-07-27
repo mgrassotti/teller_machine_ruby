@@ -21,11 +21,11 @@ RSpec.describe Checkout do
       { basket: %w[001 002 003], expected_total: 66.78 },
       { basket: %w[001 003 001], expected_total: 36.95 },
       { basket: %w[001 002 001 003], expected_total: 73.76 }
-    ].each do |basket, expected_total|
+    ].each do |input|
       co = Checkout.new(promotional_rules, products_path)
-      basket.each { |code| co.scan(code) }
+      input[:basket].each { |code| co.scan(code) }
 
-      expect(co.total).to eq(expected_total)
+      expect(co.total).to eq(input[:expected_total])
     end
   end
 end
