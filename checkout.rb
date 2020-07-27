@@ -23,9 +23,9 @@ class Checkout
   end
 
   def scan(code)
-    unless code && products_codes.include?(code)
-      raise(ProductNotFoundError(message: "Product code '#{code}' not found"))
-    end
+    code && products_codes.include?(code) || raise(
+      ProductNotFoundError, message: "Product code '#{code}' not found"
+    )
 
     cart[code] ||= 0
     cart[code] += 1
