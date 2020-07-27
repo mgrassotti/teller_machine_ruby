@@ -1,4 +1,4 @@
-# Ruby scripting test
+# Ruby scripting test - Teller Machine
 This repository was made to reply to the "teller machine test". For the full requirements, you can check [this](https://github.com/mgrassotti/teller_machine_ruby/blob/master/docs/requirements.html) page.
 
 ## Requirements
